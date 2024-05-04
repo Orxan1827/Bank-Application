@@ -8,10 +8,9 @@ import az.spring.bankapplication.exception.UserNotFoundByEmailException;
 import az.spring.bankapplication.exception.UserNotFoundByUsernameException;
 import az.spring.bankapplication.dto.request.UserPasswordRequest;
 import az.spring.bankapplication.repository.UserRepository;
-import az.spring.bankapplication.service.otpService.OTPService2;
+import az.spring.bankapplication.service.otpService.OTPService;
 import az.spring.bankapplication.service.emailService.EmailService;
 import az.spring.bankapplication.service.tokenService.JwtTokenService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,9 +29,9 @@ public class UserPasswordChangeService {
 
     private final PasswordEncoder encoder;
 
-    private final OTPService2 otpService;
+    private final OTPService otpService;
 
-    public String resetPassword(String auth, UserPasswordRequest request) {
+    public void resetPassword(String auth, UserPasswordRequest request) {
         String token = auth.substring(7);
         String usernameFromToken = tokenService.extractUsername(token);
 
@@ -41,8 +40,8 @@ public class UserPasswordChangeService {
         if (!usernameFromToken.equals(usernameFromDataBase)) {
             throw new UserEmailNotSameException();
         }
-        return otpService.generateOTPCode(usernameFromDataBase);
-//        emailService.sendPasswordResetEmail(userByEmail.getEmail(), "Verification code: ", otpCode);
+        String otpCode = otpService.generateOTPCode(usernameFromDataBase);
+        emailService.sendPasswordResetEmail(userByEmail.getEmail(), "Verification code: ", otpCode);
     }
 
     public String enterOtpCode(String auth, OTPCodeRequest request) {

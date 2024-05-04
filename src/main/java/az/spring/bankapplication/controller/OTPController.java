@@ -23,8 +23,8 @@ public class OTPController {
     @PreAuthorize("hasAuthority('USER')")
     @ResponseStatus(OK)
     @PostMapping("/resetPassword")
-    public String resetPassword(@RequestHeader("Authorization") String auth, @Valid @RequestBody UserPasswordRequest request) {
-        return userPasswordChangeService.resetPassword(auth, request);
+    public void resetPassword(@RequestHeader("Authorization") String auth, @Valid @RequestBody UserPasswordRequest request) {
+        userPasswordChangeService.resetPassword(auth, request);
     }
 
     @PreAuthorize("hasAuthority('USER')")
