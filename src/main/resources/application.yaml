@@ -1,0 +1,52 @@
+server:
+  port: 8585
+
+spring:
+
+
+
+  application:
+    name: Bank-Application
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: orxanrustamov1827@gmail.com
+    password: asjoxyxwfvzpncrp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bankApp?createDatabaseIfNotExist=true
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  liquibase:
+    change-log: classpath:db.changelog/db.changelog-master.yaml
+    enabled: false
+
+  cache:
+    type: redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+jwt-variables:
+  KEY: 3cisNpEbyZZUIp83H12iCuSP9yCnCYvYy5rWIcy8zoKgkeLaqr3cisNpEbyZZUIp83H12iCuSP9yCnCYvYy5rWIcy8zoKgkeLaqr
+  ISSUER: Orxan
+  EXPIRES_ACCESS_TOKEN_MINUTE: 555
+
+client:
+  ms-currency:
+    endpoint: https://api.fxratesapi.com/latest
