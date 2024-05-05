@@ -43,7 +43,7 @@ public class AccountController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AccountReadResponse>> getAllAccounts(@Valid @RequestBody AccountReadRequest readRequest) {
+    public ResponseEntity<List<AccountReadResponse>> getAllAccounts(@Valid @RequestBody AccountReadActiveRequest readRequest) {
         return ResponseEntity.status(OK).body(accountReadAllService.getAllAccounts(readRequest));
     }
 

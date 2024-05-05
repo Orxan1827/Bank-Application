@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static az.spring.bankapplication.enums.AccountStatus.ACTIVE;
+
 @Service
 @RequiredArgsConstructor
 public class AccountReadAllService {
@@ -19,12 +21,12 @@ public class AccountReadAllService {
     private final AccountMapper accountMapper;
 
     public List<AccountReadResponse> getAllActiveAccounts(AccountReadActiveRequest readRequest) {
-        return accountRepository.findAllByFkUserIdAndStatus(readRequest.getFkUserId(), readRequest.getStatus())
+        return accountRepository.findAllByFkUserIdAndStatus(readRequest.getFkUserId(),ACTIVE)
                 .stream().map(accountMapper::mapAccountToReadResponse)
                 .toList();
     }
 
-    public List<AccountReadResponse> getAllAccounts(AccountReadRequest readRequest) {
+    public List<AccountReadResponse> getAllAccounts(AccountReadActiveRequest readRequest) {
        return accountRepository.findAll().stream()
                 .filter(account -> account.getFkUserId().equals(readRequest.getFkUserId()))
                 .map(accountMapper::mapAccountToReadResponse)

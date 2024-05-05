@@ -16,8 +16,6 @@ public class UserReadResponse {
 
     private String username;
 
-    private boolean emailVerified;
-
     private Long fkAccountId;
 
 }

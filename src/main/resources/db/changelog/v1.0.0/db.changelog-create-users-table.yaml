@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05.05.2024
+      author: Orxan Rustamov
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: pin_code
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+              - column:
+                  name: role
+                  type: varchar(50)
+              - column:
+                  name: fk_account_id
+                  type: bigint
+                  constraints:
+                    nullable: true

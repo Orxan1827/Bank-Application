@@ -9,6 +9,7 @@ public class ExceptionConstant {
     public static final String USER_NOT_FOUND = "User not found with given id";
 
     public static final String USER_NOT_FOUND_BY_EMAIL = "User not found with given email";
+
     public static final String USER_EMAIL_NOT_SAME_MESSAGE = "Enter your email correctly";
 
     public static final String USER_NOT_FOUND_BY_USERNAME = "User not found with given username";

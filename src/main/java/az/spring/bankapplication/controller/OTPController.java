@@ -29,7 +29,7 @@ public class OTPController {
 
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/otpCode")
-    public ResponseEntity<String> enterOtpCode(@RequestHeader("Authorization") String auth, @Valid @RequestBody OTPCodeRequest request) {
+    public ResponseEntity<String> verifyOtpCode(@RequestHeader("Authorization") String auth, @Valid @RequestBody OTPCodeRequest request) {
         return ResponseEntity.status(OK).body(userPasswordChangeService.enterOtpCode(auth, request));
     }
 

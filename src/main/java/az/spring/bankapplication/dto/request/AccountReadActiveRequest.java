@@ -16,6 +16,4 @@ public class AccountReadActiveRequest {
     @NotNull
     private Long fkUserId;
 
-    private final AccountStatus status = ACTIVE;
-
 }

@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/v1/users/login/**","/api/v1/users/signup/**").permitAll()
+                    auth.requestMatchers("/api/v1/auth/login/**","/api/v1/auth/signup/**").permitAll()
                             .requestMatchers("/api/v1/users/**").hasAuthority("USER")
                             .requestMatchers("/api/vi/accounts/**").hasAuthority("USER")
                             .requestMatchers("/api/vi/currencies/**").hasAnyAuthority("USER","ADMIN")

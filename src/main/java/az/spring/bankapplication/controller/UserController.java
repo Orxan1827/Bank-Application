@@ -27,6 +27,14 @@ public class UserController {
 
     private final UserDeleteService userDeleteService;
 
+    private final UserReadService userReadService;
+
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping("/{user-id}")
+    public ResponseEntity<UserReadResponse> getUser(@PathVariable(name = "user-id") Long userId) {
+        return ResponseEntity.status(OK).body(userReadService.getUser(userId));
+    }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public ResponseEntity<List<UserReadResponse>> getAllUser() {

@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class TransferRequest {
 
-    @NotNull
     private Long id;
 
     @NotBlank
@@ -25,7 +24,6 @@ public class TransferRequest {
     @NotNull
     private BigDecimal amount;
 
-    @NotNull
     private Long fkUserId;
 
 }

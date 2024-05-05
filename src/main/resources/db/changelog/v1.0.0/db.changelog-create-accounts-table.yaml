@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 05.05.2024
+      author: Orxan Rustamov
+      changes:
+        - createTable:
+            tableName: accounts
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: account_number
+                  type: varchar(255)
+              - column:
+                  name: status
+                  type: varchar(50)
+              - column:
+                  name: balance
+                  type: numeric(19,2)
+              - column:
+                  name: fk_user_id
+                  type: bigint
+                  constraints:
+                    nullable: true
