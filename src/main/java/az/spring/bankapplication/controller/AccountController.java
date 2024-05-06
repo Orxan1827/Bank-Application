@@ -49,7 +49,7 @@ public class AccountController {
 
     @PatchMapping("/{account-id}")
     public ResponseEntity<AccountUpdateResponse> updateAccount(@PathVariable(name = "account-id") Long accountId, @Valid @RequestBody AccountUpdateRequest updateRequest) {
-        return ResponseEntity.status(OK).body(accountUpdateService.UpdateAccount(accountId, updateRequest));
+        return ResponseEntity.status(OK).body(accountUpdateService.updateAccount(accountId, updateRequest));
     }
 
     @PostMapping("/transfer")

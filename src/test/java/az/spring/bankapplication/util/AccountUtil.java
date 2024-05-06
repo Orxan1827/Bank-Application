@@ -2,9 +2,11 @@ package az.spring.bankapplication.util;
 
 import az.spring.bankapplication.dto.request.AccountCreateRequest;
 import az.spring.bankapplication.dto.request.AccountReadActiveRequest;
+import az.spring.bankapplication.dto.request.AccountUpdateRequest;
 import az.spring.bankapplication.dto.request.TransferRequest;
 import az.spring.bankapplication.dto.response.AccountCreateResponse;
 import az.spring.bankapplication.dto.response.AccountReadResponse;
+import az.spring.bankapplication.dto.response.AccountUpdateResponse;
 import az.spring.bankapplication.entity.Account;
 
 import java.math.BigDecimal;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static az.spring.bankapplication.enums.AccountStatus.ACTIVE;
+import static az.spring.bankapplication.enums.AccountStatus.INACTIVE;
 
 public class AccountUtil {
 
@@ -29,10 +32,29 @@ public class AccountUtil {
                 .build();
     }
 
+    public static AccountUpdateResponse accountUpdateResponse() {
+        return AccountUpdateResponse.builder()
+                .id(1L)
+                .accountNumber("12345")
+                .status(INACTIVE)
+                .balance(BigDecimal.ZERO)
+                .fkUserId(1L)
+                .build();
+    }
+
     public static AccountCreateRequest accountCreateRequest() {
         return AccountCreateRequest.builder()
                 .balance(BigDecimal.ZERO)
                 .accountNumber("12345")
+                .fkUserId(1L)
+                .build();
+    }
+
+    public static AccountUpdateRequest updateRequest() {
+        return AccountUpdateRequest.builder()
+                .accountNumber("12345")
+                .balance(BigDecimal.ZERO)
+                .status(INACTIVE)
                 .fkUserId(1L)
                 .build();
     }

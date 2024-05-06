@@ -22,9 +22,9 @@ public class AccountCreateService {
     private final AccountMapper accountMapper;
 
     public AccountCreateResponse createAccount(AccountCreateRequest createRequest) {
-        User user = userRepository.findById(createRequest.getFkUserId()).orElseThrow(UserNotFoundException::new);
+        userRepository.findById(createRequest.getFkUserId()).orElseThrow(UserNotFoundException::new);
         Account account = accountMapper.mapCreateRequestToAccount(createRequest);
-        account.setFkUserId(user.getId());
+        account.setFkUserId(createRequest.getFkUserId());
         Account savedAccount = accountRepository.save(account);
         return accountMapper.mapAccountToCreateResponse(savedAccount);
     }

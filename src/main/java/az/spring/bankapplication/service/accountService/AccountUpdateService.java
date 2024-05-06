@@ -17,7 +17,7 @@ public class AccountUpdateService {
 
     private final AccountMapper accountMapper;
 
-    public AccountUpdateResponse UpdateAccount(Long accountId, AccountUpdateRequest updateRequest) {
+    public AccountUpdateResponse updateAccount(Long accountId, AccountUpdateRequest updateRequest) {
         Account account = accountRepository.findById(accountId).orElseThrow(AccountNotFoundException::new);
         Account updatedAccount = accountMapper.updateAccountFromUpdateRequest(updateRequest, account);
         Account savedAccount = accountRepository.save(updatedAccount);
