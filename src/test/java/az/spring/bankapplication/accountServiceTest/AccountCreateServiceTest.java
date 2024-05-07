@@ -10,7 +10,6 @@ import az.spring.bankapplication.repository.UserRepository;
 import az.spring.bankapplication.service.accountService.AccountCreateService;
 import az.spring.bankapplication.util.AccountUtil;
 import az.spring.bankapplication.util.UserUtil;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,12 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 
-import java.math.BigDecimal;
-import java.util.Optional;
-
-import static az.spring.bankapplication.enums.AccountStatus.ACTIVE;
 import static java.util.Optional.of;
-import static java.util.Optional.ofNullable;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;

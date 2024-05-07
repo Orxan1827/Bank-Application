@@ -13,4 +13,5 @@ public class CurrencyResponse {
 
     private String currencyType;
     private BigDecimal rate;
+
 }
