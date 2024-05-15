@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableCaching
 @EnableScheduling
 @EnableFeignClients
-@EnableJpaRepositories
 @SpringBootApplication
 public class BankApplication {
 

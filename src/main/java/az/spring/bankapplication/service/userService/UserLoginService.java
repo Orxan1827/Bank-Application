@@ -1,5 +1,6 @@
 package az.spring.bankapplication.service.userService;
 
+import az.spring.bankapplication.exception.CustomBadCredentialsException;
 import az.spring.bankapplication.exception.GenericException;
 import az.spring.bankapplication.dto.request.UserLoginRequest;
 import az.spring.bankapplication.dto.response.TokenResponse;
@@ -30,10 +31,7 @@ public class UserLoginService {
                     .accessToken(tokenService.generateToken(auth))
                     .build();
         } catch (final BadCredentialsException badCredentialsException) {
-            throw GenericException.builder()
-                    .httpStatus(HttpStatus.NOT_FOUND)
-                    .errorCode(HttpStatus.NOT_FOUND.value())
-                    .errorMessage(BAD_CREDENTIAL).build();
+            throw new CustomBadCredentialsException();
         }
     }
 

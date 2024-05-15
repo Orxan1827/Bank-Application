@@ -16,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static az.spring.bankapplication.constant.SuccessMessageConstant.*;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -45,13 +47,12 @@ public class UserPasswordChangeService {
     }
 
     public String enterOtpCode(String auth, OTPCodeRequest request) {
-        log.info("auth: {}", auth);
         String token = auth.substring(7);
-        log.info("token: {}", token);
+        log.info("token: {},{}", auth, token);
         String username = tokenService.extractUsername(token);
-        User userByUsername = userRepository.findUserByUsername(username).orElseThrow(UserNotFoundByUsernameException::new);
+        userRepository.findUserByUsername(username).orElseThrow(UserNotFoundByUsernameException::new);
         otpService.verifyOTPCode(username, request.getOtpCode());
-        return "Successfully!";
+        return SUCCESS_OTP_MESSAGE;
     }
 
     public String enterNewPassword(String auth, ResetPasswordRequest resetPasswordRequest) {
@@ -60,7 +61,7 @@ public class UserPasswordChangeService {
         User userByUsername = userRepository.findUserByUsername(username).orElseThrow(UserNotFoundByUsernameException::new);
         userByUsername.setPassword(encoder.encode(resetPasswordRequest.getPassword()));
         userRepository.save(userByUsername);
-        return "Your password changed successfully";
+        return SUCCESS_PASSWORD_MESSAGE;
     }
 
 }
