@@ -3,6 +3,7 @@ package az.spring.bankapplication.service.userService;
 import az.spring.bankapplication.constant.ExceptionConstant;
 import az.spring.bankapplication.entity.User;
 import az.spring.bankapplication.exception.GenericException;
+import az.spring.bankapplication.exception.UserAllReadyExistsException;
 import az.spring.bankapplication.mapper.UserMapper;
 import az.spring.bankapplication.dto.request.UserRegisterRequest;
 import az.spring.bankapplication.dto.response.UserRegisterResponse;
@@ -25,10 +26,7 @@ public class UserRegisterService {
     public UserRegisterResponse signup(UserRegisterRequest registerRequest) {
         boolean userAllReadyExists = userRepository.existsUserByPinCode(registerRequest.getPinCode());
         if (userAllReadyExists) {
-            throw GenericException.builder()
-                    .httpStatus(HttpStatus.CONFLICT)
-                    .errorCode(HttpStatus.CONFLICT.value())
-                    .errorMessage(ExceptionConstant.USER_ALREADY_EXISTS).build();
+          throw new UserAllReadyExistsException();
         }
         User user = userMapper.mapRegisterRequestToUser(registerRequest);
         user.setPassword(encoder.encode(registerRequest.getPassword()));

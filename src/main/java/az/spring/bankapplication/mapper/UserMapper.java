@@ -23,8 +23,6 @@ public interface UserMapper {
 
     UserReadResponse mapUserToReadResponse(User user);
 
-
-
     User updateUSerFromUpdateRequest(UserUpdateRequest updateRequest, @MappingTarget User user);
 
 }

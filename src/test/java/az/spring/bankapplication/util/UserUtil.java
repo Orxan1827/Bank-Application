@@ -1,11 +1,13 @@
 package az.spring.bankapplication.util;
 
-import az.spring.bankapplication.dto.request.OTPCodeRequest;
-import az.spring.bankapplication.dto.request.ResetPasswordRequest;
-import az.spring.bankapplication.dto.request.UserLoginRequest;
-import az.spring.bankapplication.dto.request.UserPasswordRequest;
+import az.spring.bankapplication.dto.request.*;
 import az.spring.bankapplication.dto.response.TokenResponse;
+import az.spring.bankapplication.dto.response.UserReadResponse;
+import az.spring.bankapplication.dto.response.UserRegisterResponse;
 import az.spring.bankapplication.entity.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserUtil {
 
@@ -34,11 +36,53 @@ public class UserUtil {
                 .build();
     }
 
+    public static User userWithPinCode() {
+        return User.builder()
+                .id(1L)
+                .username("test_username")
+                .password("test_password")
+                .email("test_email")
+                .pinCode("123456")
+                .build();
+    }
+
+    public static UserRegisterResponse userRegisterResponse() {
+        return UserRegisterResponse.builder()
+                .id(1L)
+                .username("test_username")
+                .email("test_email")
+                .fkAccountId(1L)
+                .build();
+    }
+
+    public static UserRegisterRequest userRegisterRequest() {
+        return UserRegisterRequest.builder()
+                .username("test_username")
+                .password("test_password")
+                .email("test_email")
+                .pinCode("123456")
+                .build();
+    }
+
     public static UserLoginRequest userLoginRequest() {
         return UserLoginRequest.builder()
                 .username("test_username")
                 .password("test_password")
                 .build();
+    }
+
+    public static List<UserReadResponse> userReadResponse() {
+        List<UserReadResponse> expectedList = new ArrayList<>();
+        expectedList.add(UserReadResponse.builder().id(1L).username("test_username").email("test_email").fkAccountId(1L).build());
+        expectedList.add(UserReadResponse.builder().id(2L).username("test_username").email("test_email").fkAccountId(1L).build());
+        return expectedList;
+    }
+
+    public static List<User> userList() {
+        List<User> userList = new ArrayList<>();
+        userList.add(User.builder().id(1L).username("test_username").email("test_email").fkAccountId(1L).build());
+        userList.add(User.builder().id(2L).username("test_username").email("test_email").fkAccountId(1L).build());
+        return userList;
     }
 
     public static UserPasswordRequest userPasswordRequest() {
